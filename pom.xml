@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.3.5.RELEASE</version>
+		<relativePath />
+	</parent>
+
+	<groupId>hu.bankmonitor.spring-boot</groupId>
+	<artifactId>spring-boot-starters</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>spring-boot-starters</name>
+
+	<prerequisites>
+		<maven>3.2.1</maven>
+	</prerequisites>
+	
+	<scm>
+		<connection>scm:git:https://github.com/Bankmonitor/spring-boot-starters.git</connection>
+		<developerConnection>scm:git:git@github.com:Bankmonitor/spring-boot-starters.git</developerConnection>
+		<url>https://github.com/Bankmonitor/spring-boot-starters</url>
+		<tag>HEAD</tag>
+	</scm>
+
+	<distributionManagement>
+		<repository>
+			<id>bintray</id>
+			<url>https://api.bintray.com/maven/bankmonitor/hu.bankmonitor.spring-boot/spring-boot-starters</url>
+		</repository>
+	</distributionManagement>
+
+	<modules>
+		<module>spring-boot-starter-cors</module>
+	</modules>
+	
+	<repositories>
+		<repository>
+			<id>repo.spring.io-releases</id>
+			<name>repo.spring.io-releases</name>
+			<url>http://repo.spring.io/release</url>
+		</repository>
+		<repository>
+			<id>repo.spring.io-milestones</id>
+			<name>repo.spring.io-milestones</name>
+			<url>https://repo.spring.io/milestone</url>
+		</repository>
+
+		<repository>
+			<id>bintray-bankmonitor-hu.bankmonitor.spring-boot</id>
+			<name>bintray - spring-boot</name>
+			<url>http://dl.bintray.com/bankmonitor/hu.bankmonitor.spring-boot</url>
+		</repository>
+	</repositories>
+
+</project>

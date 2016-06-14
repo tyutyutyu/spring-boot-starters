@@ -1,0 +1,17 @@
+{
+	"groups": [
+		{
+			"name": "cors",
+			"type": "hu.bankmonitor.springboot.cors.CorsMappingProperties",
+			"sourceType": "hu.bankmonitor.springboot.cors.CorsMappingProperties"
+		}
+	],
+
+	"properties": [
+		{
+			"name": "cors-mappings",
+			"type": "java.util.Map",
+			"sourceType": "hu.bankmonitor.springboot.cors.CorsMappingProperties"
+		}
+	]
+}
