@@ -1,0 +1,21 @@
+{
+	"groups": [
+		{
+			"name": "swagger",
+			"type": "hu.bankmonitor.springboot.swagger.SwaggerProperties",
+			"sourceType": "hu.bankmonitor.springboot.swagger.SwaggerProperties"
+		}
+	],
+	"properties": [
+		{
+			"name": "api-info",
+			"type": "hu.bankmonitor.springboot.swagger.ApiInfo",
+			"sourceType": "hu.bankmonitor.springboot.swagger.SwaggerProperties"
+		},
+		{
+			"name": "path-selectors",
+			"type": "java.util.Map",
+			"sourceType": "hu.bankmonitor.springboot.swagger.SwaggerProperties"
+		}
+	]
+}

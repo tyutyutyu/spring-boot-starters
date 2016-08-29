@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.BooleanUtils;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Bean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.util.CollectionUtils;
@@ -16,6 +16,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @Configuration
+@EnableConfigurationProperties(CorsMappingProperties.class)
 @Slf4j
 public class CorsAutoConfiguration extends WebMvcConfigurerAdapter {
 
@@ -27,20 +28,15 @@ public class CorsAutoConfiguration extends WebMvcConfigurerAdapter {
 
 	private static final String[] DEFAULT_EXPOSED_HEADERS = new String[] { };
 
-	@Bean
-	@ConfigurationProperties(prefix = "cors")
-	@SuppressWarnings("static-method")
-	CorsMappingProperties properties() {
-
-		return new CorsMappingProperties();
-	}
+	@Autowired
+	private CorsMappingProperties properties;
 
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
 
-		if (properties().getCorsMappings() != null) {
+		if (properties.getCorsMappings() != null) {
 
-			for (Map.Entry<String, CorsConfiguration> mappingEntry : properties().getCorsMappings().entrySet()) {
+			for (Map.Entry<String, CorsConfiguration> mappingEntry : properties.getCorsMappings().entrySet()) {
 
 				log.debug("addCorsMappings - mappingEntry: {}", mappingEntry);
 
