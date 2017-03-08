@@ -8,9 +8,7 @@ import org.apache.commons.lang3.BooleanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.util.CollectionUtils;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -20,13 +18,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Slf4j
 public class CorsAutoConfiguration extends WebMvcConfigurerAdapter {
 
-	private static final String[] DEFAULT_ALLOWED_ORIGINS = CrossOrigin.DEFAULT_ORIGINS;
-
-	private static final String[] DEFAULT_ALLOWED_METHODS = new String[] { HttpMethod.GET.name(), HttpMethod.HEAD.name(), HttpMethod.POST.name() };
-
-	private static final String[] DEFAULT_ALLOWED_HEADERS = CrossOrigin.DEFAULT_ALLOWED_HEADERS;
-
-	private static final String[] DEFAULT_EXPOSED_HEADERS = new String[] { };
+	private static final CorsConfiguration DEFAULT_CORS_CONFIGURATION = new CorsConfiguration().applyPermitDefaultValues();
 
 	@Autowired
 	private CorsMappingProperties properties;
@@ -43,21 +35,21 @@ public class CorsAutoConfiguration extends WebMvcConfigurerAdapter {
 				// @formatter:off
 				registry
 						.addMapping(mappingEntry.getKey())
-							.allowedOrigins(extractCorsProps(mappingEntry.getValue().getAllowedOrigins(), DEFAULT_ALLOWED_ORIGINS))
-							.allowedMethods(extractCorsProps(mappingEntry.getValue().getAllowedMethods(), DEFAULT_ALLOWED_METHODS))
-							.allowedHeaders(extractCorsProps(mappingEntry.getValue().getAllowedHeaders(), DEFAULT_ALLOWED_HEADERS))
-							.exposedHeaders(extractCorsProps(mappingEntry.getValue().getExposedHeaders(), DEFAULT_EXPOSED_HEADERS))
-							.allowCredentials(BooleanUtils.toBooleanDefaultIfNull(mappingEntry.getValue().getAllowCredentials(), CrossOrigin.DEFAULT_ALLOW_CREDENTIALS))
-							.maxAge(MoreObjects.firstNonNull(mappingEntry.getValue().getMaxAge(), CrossOrigin.DEFAULT_MAX_AGE));
+							.allowedOrigins(extractCorsProps(mappingEntry.getValue().getAllowedOrigins(), DEFAULT_CORS_CONFIGURATION.getAllowedOrigins()))
+							.allowedMethods(extractCorsProps(mappingEntry.getValue().getAllowedMethods(), DEFAULT_CORS_CONFIGURATION.getAllowedMethods()))
+							.allowedHeaders(extractCorsProps(mappingEntry.getValue().getAllowedHeaders(), DEFAULT_CORS_CONFIGURATION.getAllowedHeaders()))
+							.exposedHeaders(extractCorsProps(mappingEntry.getValue().getExposedHeaders(), DEFAULT_CORS_CONFIGURATION.getExposedHeaders()))
+							.allowCredentials(BooleanUtils.toBooleanDefaultIfNull(mappingEntry.getValue().getAllowCredentials(), DEFAULT_CORS_CONFIGURATION.getAllowCredentials()))
+							.maxAge(MoreObjects.firstNonNull(mappingEntry.getValue().getMaxAge(), DEFAULT_CORS_CONFIGURATION.getMaxAge()));
 				// @formatter:on
 			}
 		}
 	}
 
-	private static String[] extractCorsProps(List<String> prop, String[] defaultProp) {
+	private static String[] extractCorsProps(List<String> prop, List<String> defaultProp) {
 
 		if (CollectionUtils.isEmpty(prop)) {
-			return defaultProp;
+			return defaultProp.toArray(new String[] { });
 		}
 
 		return prop.toArray(new String[] { });
