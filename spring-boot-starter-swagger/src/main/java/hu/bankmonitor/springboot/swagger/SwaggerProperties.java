@@ -15,6 +15,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ToString
 public class SwaggerProperties {
 
+	private String host;
+
 	private ApiInfo apiInfo;
 
 	private Map<SelectorType, String> pathSelectors;

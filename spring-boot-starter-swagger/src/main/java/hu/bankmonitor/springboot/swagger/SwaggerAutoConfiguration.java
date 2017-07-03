@@ -27,6 +27,7 @@ public class SwaggerAutoConfiguration {
 		// @formatter:off
         ApiSelectorBuilder selectorBuilder = new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(properties.getApiInfo().convertToSwaggerApiInfo())
+                .host(properties.getHost())
                 .forCodeGeneration(true)
                 .genericModelSubstitutes(ResponseEntity.class)
                 .directModelSubstitute(java.time.LocalDate.class, String.class)
