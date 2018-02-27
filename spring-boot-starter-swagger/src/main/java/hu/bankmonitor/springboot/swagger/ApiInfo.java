@@ -1,5 +1,6 @@
 package hu.bankmonitor.springboot.swagger;
 
+import java.util.Collections;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -25,7 +26,8 @@ public class ApiInfo {
 
 	public springfox.documentation.service.ApiInfo convertToSwaggerApiInfo() {
 
-		return new springfox.documentation.service.ApiInfo(title, description, version, termsOfServiceUrl, contact.convertToSwaggerContact(), license, licenseUrl);
+		return new springfox.documentation.service.ApiInfo(title, description, version, termsOfServiceUrl, contact.convertToSwaggerContact(), license, licenseUrl,
+				Collections.emptyList());
 	}
 
 }
