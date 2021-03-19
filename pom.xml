@@ -47,7 +47,7 @@
 		<commons-math3.version>3.6.1</commons-math3.version>
 		<libphonenumber.version>8.12.19</libphonenumber.version>
 		<logback-syslog4j.version>1.0.0</logback-syslog4j.version>
-		<poi.version>3.17</poi.version>
+		<poi.version>5.0.0</poi.version>
 		<sentry-logback.version>1.7.30</sentry-logback.version>
 		<spring-cloud-dependencies.version>2020.0.2</spring-cloud-dependencies.version>
 		<super-csv.version>2.4.0</super-csv.version>
